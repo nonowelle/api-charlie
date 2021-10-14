@@ -4,7 +4,7 @@ const axios = require("axios");
 
 const api_key = process.env.API_KEY;
 
-router.get("/", (req, res, next) => {
+router.get("/", (req, res) => {
   let config = {
     method: "get",
     url: "https://confirmations-1a40.restdb.io/rest/invites",
@@ -27,7 +27,7 @@ router.get("/", (req, res, next) => {
     });
 });
 
-router.post("/", async (req, res, next) => {
+router.post("/", async (req, res) => {
   console.log(req.body);
   const answer = {
     lastName: req.body.lastName,
@@ -52,19 +52,19 @@ router.post("/", async (req, res, next) => {
   };
 
   fetch("https://confirmations-1a40.restdb.io/rest/invites", options)
-  .then ((response) => response.json())
-  .then((result)=> {
-    console.log(result);
-    res.send(result)
-  })
-  .catch((error) =>console.log("error", error));
-//     if (error) {
-//       throw new Error(error);
-//     } else {
-//       console.log(response.body);
-//       res.send(JSON.stringify(response.body));
-//     }
-//   });
-// });
+    .then((response) => response.json())
+    .then((result) => {
+      console.log(result);
+      res.send(result);
+    })
+    .catch((error) => console.log("error", error));
+  //     if (error) {
+  //       throw new Error(error);
+  //     } else {
+  //       console.log(response.body);
+  //       res.send(JSON.stringify(response.body));
+  //     }
+  //   });
+});
 
 module.exports = router;
