@@ -2,12 +2,14 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 
+const api_key = process.env.API_KEY;
+
 router.get("/", (req, res, next) => {
   let config = {
     method: "get",
     url: "https://confirmations-1a40.restdb.io/rest/invites",
     headers: {
-      "x-apikey": process.env.API_KEY,
+      "x-apikey": api_key,
       "Content-Type": "application/json",
     },
   };
