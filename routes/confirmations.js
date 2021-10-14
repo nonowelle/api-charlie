@@ -38,7 +38,6 @@ router.post("/", async (req, res) => {
   };
   const sentToDB = JSON.stringify(answer);
   console.log(answer);
-  var request = require("request");
 
   var options = {
     method: "POST",
@@ -51,20 +50,12 @@ router.post("/", async (req, res) => {
     json: true,
   };
 
-  fetch("https://confirmations-1a40.restdb.io/rest/invites", options)
-    .then((response) => response.json())
+  axios("https://confirmations-1a40.restdb.io/rest/invites", options)
     .then((result) => {
       console.log(result);
-      res.send(result);
+      res.send(result.body);
     })
     .catch((error) => console.log("error", error));
-  //     if (error) {
-  //       throw new Error(error);
-  //     } else {
-  //       console.log(response.body);
-  //       res.send(JSON.stringify(response.body));
-  //     }
-  //   });
 });
 
 module.exports = router;
