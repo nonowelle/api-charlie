@@ -3,6 +3,10 @@ const router = express.Router();
 const axios = require("axios");
 
 const api_key = process.env.API_KEY;
+const cors = require("cors");
+const corsOptions = {
+  origin: "http://www.mariagecharlieetbenoit.com/",
+};
 
 router.get("/", (req, res) => {
   let config = {
@@ -27,7 +31,7 @@ router.get("/", (req, res) => {
     });
 });
 
-router.post("/", async (req, res) => {
+router.post("/", cors(corsOptions), async (req, res) => {
   console.log(req.body);
   const answer = {
     lastName: req.body.lastName,

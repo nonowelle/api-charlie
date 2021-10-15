@@ -1,16 +1,10 @@
 const express = require("express");
 const app = express();
-const cors = require("cors");
-const corsOptions = {
-  origin: "http://www.mariagecharlieetbenoit.com/",
-};
 
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
 app.use(express.json());
-
-app.use(cors(corsOptions));
 
 // add router for all routes
 const router = require("./routes/router.js");
