@@ -4,11 +4,14 @@ const axios = require("axios");
 
 const api_key = process.env.API_KEY;
 const cors = require("cors");
-const corsOptions = {
+const corsOptionsPost = {
   origin: "http://www.mariagecharlieetbenoit.com/",
 };
+const corsOptionsGet = {
+  origin: "http://www.mariagecharlieetbenoit.com/confirmations",
+};
 
-router.get("/", (req, res) => {
+router.get("/", cors(corsOptionsGet), (req, res) => {
   let config = {
     method: "get",
     url: "https://confirmations-1a40.restdb.io/rest/invites",
@@ -31,7 +34,7 @@ router.get("/", (req, res) => {
     });
 });
 
-router.post("/", cors(corsOptions), async (req, res) => {
+router.post("/", cors(corsOptionsPost), async (req, res) => {
   console.log(req.body);
   const answer = {
     lastName: req.body.lastName,
