@@ -5,7 +5,7 @@ const axios = require("axios");
 const api_key = process.env.API_KEY;
 const cors = require("cors");
 const corsOptions = {
-  origin: "http://www.mariagecharlieetbenoit.com/",
+  origin: "*",
 };
 
 router.get("/", cors(corsOptions), (req, res) => {
@@ -14,7 +14,7 @@ router.get("/", cors(corsOptions), (req, res) => {
     url: "https://confirmations-1a40.restdb.io/rest/invites",
     headers: {
       "x-apikey": api_key,
-      // "Content-Type": "application/json",
+      "Content-Type": "application/json",
     },
   };
 
