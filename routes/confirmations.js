@@ -59,6 +59,7 @@ router.post("/", cors(corsOptions), async (req, res) => {
   axios("https://confirmations-1a40.restdb.io/rest/invites", options)
     .then((result) => {
       console.log(result);
+      console.log("IN THE POST RESPONSE!!!");
       res.send(result.body);
     })
     .catch((error) => console.log("error", error));
