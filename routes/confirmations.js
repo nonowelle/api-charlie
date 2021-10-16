@@ -43,7 +43,6 @@ router.post("/", cors(corsOptions), async (req, res) => {
     answer: req.body.response,
   };
   const sentToDB = JSON.stringify(answer);
-  console.log(answer);
 
   var options = {
     method: "POST",
@@ -52,13 +51,18 @@ router.post("/", cors(corsOptions), async (req, res) => {
       "x-apikey": "1cafe281210a9ab5837d477312051f4143e0c",
       "content-type": "application/json",
     },
-    body: sentToDB,
+    body: {
+      lastName: req.body.lastName,
+      firstName: req.body.firstName,
+      email: req.body.email,
+      phone: req.body.phone,
+      answer: req.body.response,
+    },
     json: true,
   };
 
   axios("https://confirmations-1a40.restdb.io/rest/invites", options)
     .then((result) => {
-      console.log(result);
       console.log("IN THE POST RESPONSE!!!");
       res.send(result.body);
     })
