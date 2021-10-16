@@ -7,7 +7,7 @@ const cors = require("cors");
 const corsOptions = {
   origin: "*",
   methods: ["POST", "GET", "PATCH", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
+  allowedHeaders: ["Content-Type", "Authorization", "Origin"],
 };
 
 router.get("/", cors(corsOptions), (req, res) => {
