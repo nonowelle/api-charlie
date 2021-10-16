@@ -5,7 +5,7 @@ const axios = require("axios");
 const api_key = process.env.API_KEY;
 const cors = require("cors");
 const corsOptions = {
-  origin: "*",
+  origin: true,
   methods: ["POST", "GET", "PATCH", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization", "Origin"],
 };
