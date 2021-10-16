@@ -52,7 +52,7 @@ router.post("/", cors(corsOptions), async (req, res) => {
       "x-apikey": "1cafe281210a9ab5837d477312051f4143e0c",
       "content-type": "application/json",
     },
-    body: answer,
+    body: sentToDB,
     json: true,
   };
 
