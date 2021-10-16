@@ -26,7 +26,7 @@ router.get("/", cors(corsOptions), (req, res) => {
 
       res.send(response.data);
 
-      res.send(JSON.stringify(response.data));
+      // res.send(JSON.stringify(response.data));
     })
     .catch(function (error) {
       console.log(error.message);
