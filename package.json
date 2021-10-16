@@ -19,10 +19,12 @@
   "homepage": "https://github.com/lorenzhohmann/rest-template#readme",
   "dependencies": {
     "axios": "^0.23.0",
+    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^9.0.2",
     "express": "^4.17.1",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "request": "^2.88.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"

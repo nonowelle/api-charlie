@@ -1,13 +1,23 @@
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
+const bodyParser = require("body-parser");
 
 const api_key = process.env.API_KEY;
 const cors = require("cors");
+
+router.use(bodyParser.json());
 const corsOptions = {
   origin: true,
   methods: ["POST", "GET", "PATCH", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization", "Origin"],
+  allowedHeaders: [
+    "Content-Type",
+    "Authorization",
+    "Origin",
+    "Access-Control-Allow-Origin",
+    "Accept",
+    "Options",
+  ],
 };
 
 router.get("/", cors(corsOptions), (req, res) => {
@@ -23,18 +33,18 @@ router.get("/", cors(corsOptions), (req, res) => {
   axios(config)
     .then((response) => {
       console.log("IN THE RESPONSE");
+      // res.set("Access-Control-Allow-Origin", "http://localhost:8080");
 
       res.send(response.data);
-
-      // res.send(JSON.stringify(response.data));
     })
     .catch(function (error) {
       console.log(error.message);
     });
 });
 
-router.post("/", cors(corsOptions), async (req, res) => {
+router.post("/", cors(corsOptions), (req, res) => {
   console.log(req.body);
+
   const answer = {
     lastName: req.body.lastName,
     firstName: req.body.firstName,
@@ -42,31 +52,25 @@ router.post("/", cors(corsOptions), async (req, res) => {
     phone: req.body.phone,
     answer: req.body.response,
   };
-  const sentToDB = JSON.stringify(answer);
 
-  var options = {
+  let request = require("request");
+
+  let options = {
     method: "POST",
+    url: "https://confirmations-1a40.restdb.io/rest/invites",
     headers: {
       "cache-control": "no-cache",
       "x-apikey": "1cafe281210a9ab5837d477312051f4143e0c",
       "content-type": "application/json",
     },
-    body: {
-      lastName: req.body.lastName,
-      firstName: req.body.firstName,
-      email: req.body.email,
-      phone: req.body.phone,
-      answer: req.body.response,
-    },
+    body: answer,
     json: true,
   };
 
-  axios("https://confirmations-1a40.restdb.io/rest/invites", options)
-    .then((result) => {
-      console.log("IN THE POST RESPONSE!!!");
-      res.send(result.body);
-    })
-    .catch((error) => console.log("error", error));
+  request(options, function (error, response, body) {
+    if (error) throw new Error(error);
+    console.log(body);
+  });
 });
 
 module.exports = router;

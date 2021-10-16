@@ -1,10 +1,15 @@
 const express = require("express");
 const app = express();
+// const bodyParser = require("body-parser");
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
-app.use(express.json());
+// app.use(express.json());
+// app.use(bodyParser.json());
 
 // add router for all routes
 const router = require("./routes/router.js");
