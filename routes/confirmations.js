@@ -50,7 +50,7 @@ router.post("/", cors(corsOptions), (req, res) => {
     firstName: req.body.firstName,
     email: req.body.email,
     phone: req.body.phone,
-    answer: req.body.response,
+    answer: req.body.answer,
   };
 
   let request = require("request");
