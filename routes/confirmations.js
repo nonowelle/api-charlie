@@ -5,9 +5,9 @@ const axios = require("axios");
 const api_key = process.env.API_KEY;
 const cors = require("cors");
 const corsOptions = {
-  origin: "http://www.mariagecharlieetbenoit.com/",
-  methods: "GET,POST",
-  allowedHeaders: "Content-Type",
+  origin: "*",
+  methods: ["POST", "GET", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
 };
 
 router.get("/", cors(corsOptions), (req, res) => {
