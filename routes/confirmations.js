@@ -28,8 +28,8 @@ router.get('/', cors(corsOptions), (req, res) => {
     headers: {
       'x-apikey': process.env.API_KEY,
       'Content-Type': 'application/json',
-      responseType: 'stream',
     },
+    responseType: 'stream',
   };
 
   axios(config)
