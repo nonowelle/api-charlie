@@ -25,7 +25,7 @@ router.get('/', cors(corsOptions), (req, res) => {
     method: 'get',
     url: 'https://confirmations-1a40.restdb.io/rest/invites',
     headers: {
-      'x-apikey': api_key,
+      'x-apikey': process.env.api_key,
       'Content-Type': 'application/json',
     },
   };
