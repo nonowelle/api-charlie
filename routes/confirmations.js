@@ -7,6 +7,7 @@ const api_key = process.env.API_KEY;
 const cors = require('cors');
 
 router.use(bodyParser.json());
+
 const corsOptions = {
   origin: true,
   methods: ['POST', 'GET', 'PATCH', 'DELETE', 'OPTIONS'],
@@ -27,6 +28,7 @@ router.get('/', cors(corsOptions), (req, res) => {
     headers: {
       'x-apikey': process.env.API_KEY,
       'Content-Type': 'application/json',
+      responseType: 'stream',
     },
   };
 
